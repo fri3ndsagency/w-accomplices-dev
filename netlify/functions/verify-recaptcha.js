@@ -1,14 +1,31 @@
 const axios = require('axios');
+require('dotenv').config();
 
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+const SCORE = process.env.SCORE;
 
-exports.handler = async function(event, context) {
-  // Parse the POST request body (assuming the token comes in the request body)
+exports.handler = async function (event, context) {
+
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Allow all origins (change '*' to specific origin if necessary)
+        'Access-Control-Allow-Headers': 'Content-Type', // Allow specific headers
+        'Access-Control-Allow-Methods': 'POST, OPTIONS', // Allowed methods
+      },
+      body: JSON.stringify({ message: 'CORS preflight request' }),
+    };
+  }
+
   const { token } = JSON.parse(event.body);
 
   if (!token) {
     return {
       statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Allow all origins
+      },
       body: JSON.stringify({ error: 'reCAPTCHA token missing' }),
     };
   }
@@ -20,23 +37,34 @@ exports.handler = async function(event, context) {
     );
 
     const data = response.data;
+    console.log("data", data)
 
-    if (data.success && data.score >= 0.5) {
+
+    if (data.success && data.score >= SCORE) {
       // reCAPTCHA verified successfully
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*', // Allow all origins
+        },
         body: JSON.stringify({ message: 'reCAPTCHA verified successfully' }),
       };
     } else {
       // reCAPTCHA failed or score too low
       return {
         statusCode: 403,
+        headers: {
+          'Access-Control-Allow-Origin': '*', // Allow all origins
+        },
         body: JSON.stringify({ message: 'Failed reCAPTCHA verification', score: data.score }),
       };
     }
   } catch (error) {
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Allow all origins
+      },
       body: JSON.stringify({ error: 'Error verifying reCAPTCHA', details: error.message }),
     };
   }
