@@ -18,6 +18,10 @@ exports.handler = async function (event, context) {
     };
   }
 
+  const clientIp = event.headers['x-nf-client-connection-ip'];
+  console.log("clientIp", clientIp)
+  console.log("event.body", event.body)
+
   const { token } = JSON.parse(event.body);
 
   if (!token) {
@@ -26,7 +30,7 @@ exports.handler = async function (event, context) {
       headers: {
         'Access-Control-Allow-Origin': '*', // Allow all origins
       },
-      body: JSON.stringify({ error: 'reCAPTCHA token missing' }),
+      body: JSON.stringify({ error: 'reCAPTCHA token missing', ip: clientIp }),
     };
   }
 
@@ -37,7 +41,7 @@ exports.handler = async function (event, context) {
     );
 
     const data = response.data;
-    console.log("data", data)
+    console.log("response", data)
 
 
     if (data.success && data.score >= SCORE) {
@@ -47,7 +51,7 @@ exports.handler = async function (event, context) {
         headers: {
           'Access-Control-Allow-Origin': '*', // Allow all origins
         },
-        body: JSON.stringify({ message: 'reCAPTCHA verified successfully' }),
+        body: JSON.stringify({ message: 'reCAPTCHA verified successfully', ip: clientIp }),
       };
     } else {
       // reCAPTCHA failed or score too low
@@ -56,7 +60,7 @@ exports.handler = async function (event, context) {
         headers: {
           'Access-Control-Allow-Origin': '*', // Allow all origins
         },
-        body: JSON.stringify({ message: 'Failed reCAPTCHA verification', score: data.score }),
+        body: JSON.stringify({ message: 'Failed reCAPTCHA verification', score: data.score, ip: clientIp }),
       };
     }
   } catch (error) {
@@ -65,7 +69,7 @@ exports.handler = async function (event, context) {
       headers: {
         'Access-Control-Allow-Origin': '*', // Allow all origins
       },
-      body: JSON.stringify({ error: 'Error verifying reCAPTCHA', details: error.message }),
+      body: JSON.stringify({ error: 'Error verifying reCAPTCHA', details: error.message, ip: clientIp }),
     };
   }
 };
