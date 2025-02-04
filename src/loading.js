@@ -4,16 +4,16 @@ window.Webflow.push(() => {
 
   if (window.innerWidth <= 767) {
     var videos = document.querySelectorAll("[no-mobile]");
-    console.log("eliminados");
+    //console.log("eliminados");
     videos.forEach(function (video) {
-      console.log("eliminados", video);
+      //console.log("eliminados", video);
       video.removeAttribute("src");
     });
     var elementoEliminar = document.querySelector(".html-embed-15");
     //elementoEliminar.remove();
   }
   var hasPlayed = sessionStorage.getItem("hasMyAnimationPlayed");
-  console.log("enra");
+  // console.log("enra");
 
   if (hasPlayed !== "true") {
     gsap.set(".page-main", {
@@ -74,7 +74,7 @@ window.Webflow.push(() => {
         onComplete: () => {
           const tl = gsap.timeline({
             onComplete: function () {
-              console.log("La animación ha finalizadotodaa.");
+              //  console.log("La animación ha finalizadotodaa.");
               sessionStorage.setItem("hasMyAnimationPlayed", true);
               video.pause();
               if (window.innerWidth > 768) {
@@ -171,7 +171,7 @@ window.Webflow.push(() => {
           video.addEventListener("ended", function () {
             // Elimina el elemento de video del DOM
             video.remove();
-            console.log("El video ha terminado y se ha eliminado.");
+            //  console.log("El video ha terminado y se ha eliminado.");
           });
           tl.to(".loading-wrapper", {
             opacity: 0,
@@ -437,7 +437,7 @@ window.Webflow.push(() => {
     }
   } else {
     const tl = gsap.timeline({});
-    console.log("enra");
+    // console.log("enra");
 
     document.querySelector(".loading-wrapper").style.display = "none";
     document.querySelector(".page-main").style.display = "block";
