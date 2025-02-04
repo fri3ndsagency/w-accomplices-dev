@@ -69,7 +69,7 @@ function initAfterDelay2() {
     const yValue = `${-2 * (cards2.length - index - 1)}vh`;
     const opacityValue = 1 - index * 0.1;
     const brightnessValue = index * 20;
-    console.log(brightnessValue);
+    //console.log(brightnessValue);
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: card,

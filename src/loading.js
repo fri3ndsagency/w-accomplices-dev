@@ -1,6 +1,6 @@
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  console.log("loading");
+  //console.log("loading");
 
   if (window.innerWidth <= 767) {
     var videos = document.querySelectorAll("[no-mobile]");

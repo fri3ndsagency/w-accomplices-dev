@@ -103,7 +103,7 @@ function populateVimeoThumbs2() {
       .then((t) => t.json())
       .then((t) => {
         const thumb = t[0].thumbnail_large;
-        console.log(thumb);
+        //console.log(thumb);
 
         item.querySelector(".bg-card-2").src = thumb;
       });
