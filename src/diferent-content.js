@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var videos = document.querySelectorAll("[no-mobile]");
     var desktop = document.querySelectorAll("[no-mobile-bg]");
     videos.forEach(function (video) {
-      console.log("eliminados", video);
+      // console.log("eliminados", video);
       video.removeAttribute("src");
     });
     desktop.forEach(function (element) {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const elementsPublic = document.querySelectorAll("[videos-wrapper-public]");
     elementsPublic.forEach((element, i) => {
-      console.log(element[i], i, "eso");
+      //  console.log(element[i], i, "eso");
       if (i >= 5 && i <= 7) {
       } else {
         element.style.display = "none";
