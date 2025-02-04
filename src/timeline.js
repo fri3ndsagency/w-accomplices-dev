@@ -9,7 +9,7 @@ window.Webflow.push(() => {
 
   divsColor.forEach((elemento, index) => {
     elemento.addEventListener("click", () => {
-      console.log(index, "indedx");
+     // console.log(index, "indedx");
       animarElementos(index);
     });
   });

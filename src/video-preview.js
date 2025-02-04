@@ -16,7 +16,7 @@ $videoCloseClick.each(function (index) {
 $videoPreviewClick.on("click", function () {
   // Obtener el índice del elemento clickeado
   var index = $(this).data("index");
-  console.log(index, "private");
+  //console.log(index, "private");
   // Agregar la clase "is active" al elemento $videoPreviewWrapper correspondiente
   var $videoPreviewWrapper = $("[videos-wrapper-public]");
   $videoPreviewWrapper.removeClass("is active"); // Remover la clase de todos los elementos
@@ -115,7 +115,7 @@ populateVimeoThumbs2();
 $videoPreviewClick.on("click", function () {
   // Obtener el índice del elemento clickeado
   var index = $(this).data("index");
-  console.log(index);
+ // console.log(index);
 
   // Obtener el video wrapper correspondiente al índice
   var $videoWrapper = $("[videos-wrapper-public][data-index='" + index + "']");

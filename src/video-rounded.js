@@ -54,7 +54,7 @@ $(".click-trigger").on("click", function () {
 
 $(".video-rounded").on("click", function () {
   var index = $(this).data("index");
-  console.log(index);
+ // console.log(index);
   var $videoRounded = $(".video-rounded");
   var $videoWrapper = $(".video-wrapper");
   var videoFrame = document.querySelector(".video-frame");

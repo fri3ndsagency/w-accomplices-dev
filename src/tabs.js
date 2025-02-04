@@ -27,7 +27,7 @@ if (window.innerWidth > 768) {
   // Añadir evento de hover
 
   card1.addEventListener("mouseenter", () => {
-    console.log("hover");
+   // console.log("hover");
     gsap.to(cardText2, 0.5, { fontSize: "10em" });
   });
 
@@ -122,7 +122,7 @@ document.querySelector("[card-2-tab]").addEventListener("click", function () {
     var element = document.getElementById("section-4");
     element.scrollIntoView({ behavior: "smooth" });
     if (window.innerWidth < 768) {
-      console.log("entra mobile");
+     // console.log("entra mobile");
       setTimeout(function () {
         var element = document.getElementById("mobile-private");
         element.scrollIntoView({ behavior: "smooth" });
